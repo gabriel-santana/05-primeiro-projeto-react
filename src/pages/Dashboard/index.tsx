@@ -1,10 +1,11 @@
 import React, { useState, useEffect, FormEvent } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import api from '../../services/api';
 
 import logoImg from '../../assets/logo.svg';
 
-import { Title, Form, Repositories, Error } from './styles';
+import { Title, Form, Error, Repositories } from './styles';
 
 interface Repository {
   // eslint-disable-next-line camelcase
@@ -65,7 +66,6 @@ const Dashboard: React.FC = () => {
     <>
       <img src={logoImg} alt="Github Explorer" />
       <Title>Explore repositórios no Github.</Title>
-
       <Form hasError={!!inputError} onSubmit={handleAddRepository}>
         <input
           value={newRepo}
@@ -74,14 +74,13 @@ const Dashboard: React.FC = () => {
         />
         <button type="submit">Pesquisar</button>
       </Form>
-
       {inputError && <Error>{inputError}</Error>}
 
       <Repositories>
         {repositories.map(repository => (
-          <a
+          <Link
             key={repository.full_name}
-            href="https://github.com/gabriel-santana/05-primeiro-projeto-react"
+            to={`/repository/${repository.full_name}`}
           >
             <img
               src={repository.owner.avatar_url}
@@ -92,7 +91,7 @@ const Dashboard: React.FC = () => {
               <p>{repository.description}</p>
             </div>
             <FiChevronRight size={20} />
-          </a>
+          </Link>
         ))}
       </Repositories>
     </>
