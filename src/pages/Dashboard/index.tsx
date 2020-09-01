@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { useState, useEffect, FormEvent } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -8,12 +9,10 @@ import logoImg from '../../assets/logo.svg';
 import { Title, Form, Error, Repositories } from './styles';
 
 interface Repository {
-  // eslint-disable-next-line camelcase
   full_name: string;
   description: string;
   owner: {
     login: string;
-    // eslint-disable-next-line camelcase
     avatar_url: string;
   };
 }
